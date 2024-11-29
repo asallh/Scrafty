@@ -4,18 +4,37 @@ import { Button } from "@nextui-org/react";
 import { useState } from "react";
 
 export default function Home() {
-  const [download, setDownload] = useState<string>("");
+  // const [download, setDownload] = useState<string>("");
   const [url, setUrl] = useState<string>("");
 
   // Will fetch the page data
   const getPageData = async () => {
-    const res = await fetch("http://localhost:3000/api/getData", {
-      method: "POST",
-      body: JSON.stringify({ url }),
-    })
-    const { download } = await res.json();
-    setDownload(download);
-    console.log("Downloads", download);
+    try {
+      const res = await fetch("http://localhost:3000/api/getData", {
+        method: "POST",
+        body: JSON.stringify({ url }),
+      });
+  
+      if (!res.ok) {
+        throw new Error("Failed to fetch images.");
+      }
+  
+      const blob = await res.blob(); // Get the ZIP file as a Blob
+      const downloadLink = document.createElement("a");
+  
+      // Create a temporary link for downloading
+      downloadLink.href = URL.createObjectURL(blob);
+      downloadLink.download = "images.zip"; // Default file name
+      document.body.appendChild(downloadLink);
+  
+      // Trigger the download
+      downloadLink.click();
+  
+      // Clean up
+      document.body.removeChild(downloadLink);
+    } catch (error) {
+      console.error("Error fetching images:", error);
+    }
   };
 
   return (
@@ -42,11 +61,6 @@ export default function Home() {
             Submit
           </Button>
         </div>
-        {download && (
-          <center>
-            <p> This Package has {download} downloads.</p>
-          </center>
-        )}
       </div>
     </div>
   );
