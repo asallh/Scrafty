@@ -14,6 +14,7 @@ export default {
         background: "#dba06d",
         titleColor: "black",
         buttonColor: "#9e574e",
+        buttonHover:"#80433b",
         foreground: "var(--foreground)",
       },
     },
