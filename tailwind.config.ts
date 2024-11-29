@@ -11,7 +11,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "#669bbc",
+        background: "#dba06d",
+        titleColor: "black",
+        buttonColor: "#9e574e",
         foreground: "var(--foreground)",
       },
     },
