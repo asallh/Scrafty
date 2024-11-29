@@ -1,7 +1,14 @@
+"use client"
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/react";
 
 export default function Home() {
+
+  // Will fetch the page data
+  const getPageData = () =>{
+    fetch("http://localhost:3000/api/getData")
+  }
+
   return (
     <div className="bg-background min-h-screen flex flex-col items-center justify-center">
       <h1 className="p-8 text-titleColor text-3xl font-bold">Scrafty</h1>
@@ -10,10 +17,10 @@ export default function Home() {
         <Input
           label="Website"
           required
-          width="100%" // Set the width to 100% to fill the parent div
+          width="100%" 
         />
         <div className="flex justify-center mt-8">
-          <Button variant="solid" className="m-4 p-4 bg-buttonColor hover:bg-buttonHover">Submit</Button>
+          <Button variant="solid" className="m-4 p-4 bg-buttonColor hover:bg-buttonHover" onClick={getPageData} >Submit</Button>
         </div>
       </div>
     </div>
