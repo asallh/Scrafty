@@ -44,7 +44,7 @@ const getData = async (req: NextApiRequest, res: NextApiResponse) => {
     // Download and convert each image to PNG, then save it in the temporary directory
     for (const [index, imageUrl] of imageUrls.entries()) {
       const imageResponse = await fetch(imageUrl);
-      const imageBuffer = await imageResponse.buffer();
+      const imageBuffer = Buffer.from(await imageResponse.arrayBuffer());
 
       // Convert image to PNG using sharp
       const imagePath = path.join(imagesDir, `image-${index + 1}.png`);
