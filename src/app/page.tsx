@@ -24,7 +24,7 @@ export default function Home() {
   
       // Create a temporary link for downloading
       downloadLink.href = URL.createObjectURL(blob);
-      downloadLink.download = "images.zip"; // Default file name
+      downloadLink.download = "scrafty.zip"; // Default file name
       document.body.appendChild(downloadLink);
   
       // Trigger the download
