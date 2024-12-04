@@ -12,11 +12,8 @@ Girlfriend did it manually, and I said I got this.
 
 **Update** she did it manually before I managed to get it done lol
 
----
 ## Production
 Access the website at https://scrafty.ajsallh.com 
-
----
 
 To launch application simply clone and run:
 ```
