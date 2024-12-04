@@ -1,21 +1,23 @@
-# Step 1: Build the Next.js app
-FROM node:18 AS builder
+# Use Node.js 18 Alpine as the base image
+FROM node:18-alpine
+
+# Set working directory in the container
 WORKDIR /app
-COPY package.json package-lock.json ./
+
+# Copy package.json and package-lock.json to the container
+COPY package*.json ./
+
+# Install dependencies
 RUN npm install
+
+# Copy the rest of the application files to the container
 COPY . .
+
+# Build the application
 RUN npm run build
 
-# Step 2: Prepare Nginx for serving the built app
-FROM nginx:stable-alpine
-WORKDIR /usr/share/nginx/html
+# Expose the port the app runs on
+EXPOSE 3000
 
-# Remove default Nginx static files
-RUN rm -rf ./*
-COPY --from=builder /app/out .
-
-# Copy custom Nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# Start the application
+CMD ["npm", "start"]
