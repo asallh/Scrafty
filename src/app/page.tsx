@@ -10,7 +10,7 @@ export default function Home() {
   // Will fetch the page data
   const getPageData = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/getData", {
+      const res = await fetch("http://192.169.1.101:3000/api/getData", {
         method: "POST",
         body: JSON.stringify({ url }),
       });
