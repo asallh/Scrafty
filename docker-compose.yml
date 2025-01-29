@@ -3,10 +3,10 @@ version: '3.8'
 services:
   app:
     build:
-      context: . # The directory where your Dockerfile is located
+      context: . 
     container_name: scrafty
     ports:
-      - "8080:3000" # Map container's port 3000 to host's port 8080
+      - "8080:3000" 
     environment:
-      - NODE_ENV=production # Run the app in production mode
+      - NODE_ENV=production 
     restart: always
